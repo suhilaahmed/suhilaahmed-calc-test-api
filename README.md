@@ -38,7 +38,7 @@ In the root directory of the project run the following command.
 mvn spring-boot:run
 ```
 
-## Performance Test
+## Performance Tests
 
 Navigate up from the project directory to the load_test directory.
 
@@ -65,3 +65,28 @@ locust --config=master.conf
 ### Test report
 After the performance tests finished running you will find the log file named : locust_log.log created at the same directory.
 
+## End to End Tests
+### Prerequisites
+Install postman.
+Have the backend up and running as described above.
+
+#### Navigate up from the project directory to the postman_endToEnd-tests directory.
+Open postman.
+Import the Equation_Calculator.postman_collection.json collection.
+Click on Runner button and choose the imported collection.
+Click on start run.
+
+### Test report
+After the postman collection is finished running you can find the report on the screen on postman console.
+
+## CI
+CI has been implmented using Jenkins on local environment.
+### Prerequisites
+Install Jenkins locally
+Create a new pipeline item
+
+#### In the root directory of the project you will find a jenkins file contains the deployment script
+Copy and paste the file in pipeline script.
+Hit save and Build now.
+
+### Viola! You have everything up and running
