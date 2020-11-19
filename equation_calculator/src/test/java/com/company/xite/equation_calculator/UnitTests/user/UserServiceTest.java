@@ -4,43 +4,41 @@ import com.company.xite.equation_calculator.IntegrationTests.Utils.Helpers;
 import com.company.xite.equation_calculator.user.User;
 import com.company.xite.equation_calculator.user.UserEquation;
 import com.company.xite.equation_calculator.user.UserService;
+import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.mock.mockito.MockBean;
-
-import java.util.concurrent.ThreadLocalRandom;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
+
 @RunWith(MockitoJUnitRunner.class)
-class UserServiceTest {
+public class UserServiceTest {
 
     @MockBean
     UserService userService;
 
     @MockBean
-    UserEquation userEquation = mock(UserEquation.class);
+    UserEquation userEquation;
 
     long userId;
 
-    @BeforeEach
+    @Before
     public void setUp() {
         userService = new UserService();
         userId = Helpers.generateTestTicket();
-
-
+        userEquation = mock(UserEquation.class);
     }
 
     @Test
-    void testAddEquationToEmptyUserHistory() {
+    public void testAddEquationToEmptyUserHistory() {
         userService.addEquation(userId, userEquation);
         assertEquals(1, userService.getAllUserEquations(userId).size());
     }
 
     @Test
-    void testAddEquationToNonEmptyUserHistory() {
+    public void testAddEquationToNonEmptyUserHistory() {
         User user = mock(User.class);
         userService.addEquation(user.getId(), userEquation);
         userService.addEquation(user.getId(), userEquation);
@@ -48,7 +46,7 @@ class UserServiceTest {
     }
 
     @Test
-    void testGetLatestUserEquationsWhenHistoryHas5Equations() {
+    public void testGetLatestUserEquationsWhenHistoryHas5Equations() {
         UserEquation userEquation = mock(UserEquation.class);
         for(int i = 0; i<=5 ;i++){
             userService.addEquation(userId, userEquation);
@@ -57,7 +55,7 @@ class UserServiceTest {
     }
 
     @Test
-    void testGetLatestUserEquationsWhenHistoryHasMoreThanEquations() {
+    public void testGetLatestUserEquationsWhenHistoryHasMoreThanEquations() {
         UserEquation userEquation = mock(UserEquation.class);
         for(int i = 0; i<= 6 ;i++){
             userService.addEquation(userId, userEquation);
@@ -68,13 +66,13 @@ class UserServiceTest {
 
 
     @Test
-    void testGetLatestUserEquationsWhenThereIsNoHistory() {
+    public void testGetLatestUserEquationsWhenThereIsNoHistory() {
         userService.addEquation(userId, userEquation);
         assertEquals(0, userService.getLatestUserEquations(userId).size());
     }
 
     @Test
-    void testGetLatestUserEquationsWhenThereIsHistory() {
+    public void testGetLatestUserEquationsWhenThereIsHistory() {
         userService.addEquation(userId, userEquation);
         userService.addEquation(userId, userEquation);
         assertEquals(1, userService.getLatestUserEquations(userId).size());
