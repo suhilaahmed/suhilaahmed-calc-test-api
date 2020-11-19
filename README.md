@@ -1,20 +1,20 @@
 # suhilaahmed-calc-test-api
 
-a Simple Equation Calculator Application in which a user can type a simple equation and submit.
+A Simple Equation Calculator Application in which a user can type a simple equation and submit.
 ## Getting Started
 These instructions will get you a copy of the framework up and running up and running on your local machine for testing process.
 ### Prerequisites
 Install the 1.8 JDK
 ```
-[https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html] Oracle website.
+[Oracle website](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html).
 ```
 Install maven globally
 ```
-[https://maven.apache.org/] Apache Maven website.
+[Apache Maven website](https://maven.apache.org/).
 ```
 Install IntelliJ IDEA
 ```
-[https://www.jetbrains.com/idea/download/#section=mac] You can find it on jetBrains Website.
+[You can find it on jetBrains Website](https://www.jetbrains.com/idea/download/#section=mac).
 ```
 
 ## Running the tests
@@ -40,12 +40,12 @@ mvn spring-boot:run
 
 ## Performance Test
 
-Navigate up from the project directory to the ###load_test directory.
+Navigate up from the project directory to the load_test directory.
 
 ### Prerequisites
 Install python 3.9
 ```
-[https://www.python.org/downloads/] Python website.
+[Python website](https://www.python.org/downloads/).
 ```
 Install locust library
 In the terminal run the following command.
