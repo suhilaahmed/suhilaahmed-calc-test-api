@@ -1,10 +1,8 @@
 package com.company.xite.equation_calculator.UnitTests.classifier;
 
 import com.company.xite.equation_calculator.classifier.NumberClassificationUtil;
-import com.company.xite.equation_calculator.equation.EquationResult;
-import org.junit.Before;
+
 import org.junit.Test;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import static org.junit.Assert.*;
 

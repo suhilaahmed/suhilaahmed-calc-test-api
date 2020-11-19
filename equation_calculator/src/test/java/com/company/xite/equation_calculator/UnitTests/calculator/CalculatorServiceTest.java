@@ -5,25 +5,17 @@ import com.company.xite.equation_calculator.calculator.CalculatorService;
 import com.company.xite.equation_calculator.equation.Equation;
 import com.company.xite.equation_calculator.equation.EquationResponse;
 import com.company.xite.equation_calculator.equation.EquationResult;
-import com.company.xite.equation_calculator.user.User;
 import com.company.xite.equation_calculator.user.UserService;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
+
 import org.junit.runner.RunWith;
-import org.mockito.configuration.IMockitoConfiguration;
-import org.mockito.internal.matchers.Null;
+
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.event.annotation.BeforeTestExecution;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.concurrent.ThreadLocalRandom;
 
 import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.mock;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CalculatorServiceTest {

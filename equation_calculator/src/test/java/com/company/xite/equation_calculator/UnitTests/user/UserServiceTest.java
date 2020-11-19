@@ -5,7 +5,6 @@ import com.company.xite.equation_calculator.user.User;
 import com.company.xite.equation_calculator.user.UserEquation;
 import com.company.xite.equation_calculator.user.UserService;
 import org.junit.Before;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
