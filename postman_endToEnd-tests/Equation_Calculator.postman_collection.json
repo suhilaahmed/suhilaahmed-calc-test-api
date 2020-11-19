@@ -1,0 +1,1209 @@
+{
+	"info": {
+		"_postman_id": "6ff194ae-9761-4ea0-8570-a24c2d0375d1",
+		"name": "Equation_Calculator",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Test Correct Equation Format [Two operands and plus operator]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "554b22e2-541a-4392-ad14-83c65a01feb7",
+						"exec": [
+							"const jsonResponse = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Check result number is correct with correct equation format  \", function () {",
+							"    pm.expect(jsonResponse.equationResult.resultNumber).to.eql(3);",
+							"});",
+							"",
+							"pm.test(\"Check result number is natural number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.naturalNumber).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Check result number is positive number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.positiveNumber).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Check result number is not negative number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.negativeNumber).to.eql(false);",
+							"});",
+							"",
+							"pm.test(\"Check result number is prime number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.primeNumber).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Check result number is whole number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.wholeNumber).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Check history is empty with first equation\", function () {",
+							"    pm.expect(jsonResponse.userEquations.length).to.eql(0);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "98d90fd8-e5f5-43fe-b10a-b5c52bf300ae",
+						"exec": [
+							"pm.globals.set('userId', _.random(1, 1000));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"equation\": \"1+2\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/calculate/{{userId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"calculate",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Correct Equation Format [Two operands and minus operator]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "554b22e2-541a-4392-ad14-83c65a01feb7",
+						"exec": [
+							"const jsonResponse = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Check result number is correct with correct equation format  \", function () {",
+							"    pm.expect(jsonResponse.equationResult.resultNumber).to.eql(-1);",
+							"});",
+							"",
+							"pm.test(\"Check result number is natural number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.naturalNumber).to.eql(false);",
+							"});",
+							"",
+							"pm.test(\"Check result number is positive number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.positiveNumber).to.eql(false);",
+							"});",
+							"",
+							"pm.test(\"Check result number is a negative number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.negativeNumber).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Check result number is prime number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.primeNumber).to.eql(false);",
+							"});",
+							"",
+							"pm.test(\"Check result number is whole number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.wholeNumber).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Check history is empty with first equation\", function () {",
+							"    pm.expect(jsonResponse.userEquations.length).to.eql(0);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4c4db6d5-0210-4ff3-84ba-ecead2735e50",
+						"exec": [
+							"pm.globals.set('userId', _.random(1, 1000));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"equation\": \"1-2\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/calculate/{{userId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"calculate",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Correct Equation Format [Two operands and division operator]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "554b22e2-541a-4392-ad14-83c65a01feb7",
+						"exec": [
+							"const jsonResponse = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Check result number is correct with correct equation format  \", function () {",
+							"    pm.expect(jsonResponse.equationResult.resultNumber).to.eql(1);",
+							"});",
+							"",
+							"pm.test(\"Check result number is natural number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.naturalNumber).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Check result number is positive number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.positiveNumber).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Check result number is not negative number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.negativeNumber).to.eql(false);",
+							"});",
+							"",
+							"pm.test(\"Check result number is prime number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.primeNumber).to.eql(false);",
+							"});",
+							"",
+							"pm.test(\"Check result number is whole number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.wholeNumber).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Check history is empty with first equation\", function () {",
+							"    pm.expect(jsonResponse.userEquations.length).to.eql(0);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c0e67089-707c-43d9-b9d8-478a6502c741",
+						"exec": [
+							"pm.globals.set('userId', _.random(1, 1000));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"equation\": \"5/5\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/calculate/{{userId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"calculate",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Correct Multiplication Equation Format [ *  operator]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "554b22e2-541a-4392-ad14-83c65a01feb7",
+						"exec": [
+							"const jsonResponse = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Check result number is correct with correct equation format  \", function () {",
+							"    pm.expect(jsonResponse.equationResult.resultNumber).to.eql(25);",
+							"});",
+							"",
+							"pm.test(\"Check result number is natural number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.naturalNumber).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Check result number is positive number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.positiveNumber).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Check result number is not negative number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.negativeNumber).to.eql(false);",
+							"});",
+							"",
+							"pm.test(\"Check result number is prime number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.primeNumber).to.eql(false);",
+							"});",
+							"",
+							"pm.test(\"Check result number is whole number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.wholeNumber).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Check history is empty with first equation\", function () {",
+							"    pm.expect(jsonResponse.userEquations.length).to.eql(0);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "87df1619-b5bb-4d73-9b63-be48ec79ce59",
+						"exec": [
+							"pm.globals.set('userId', _.random(1, 1000));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"equation\": \"5*5\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/calculate/{{userId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"calculate",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Correct Multiplication Equation Format [ x  operator]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "554b22e2-541a-4392-ad14-83c65a01feb7",
+						"exec": [
+							"const jsonResponse = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Check result number is correct with correct equation format  \", function () {",
+							"    pm.expect(jsonResponse.equationResult.resultNumber).to.eql(25);",
+							"});",
+							"",
+							"pm.test(\"Check result number is natural number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.naturalNumber).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Check result number is positive number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.positiveNumber).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Check result number is not negative number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.negativeNumber).to.eql(false);",
+							"});",
+							"",
+							"pm.test(\"Check result number is prime number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.primeNumber).to.eql(false);",
+							"});",
+							"",
+							"pm.test(\"Check result number is whole number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.wholeNumber).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Check history is empty with first equation\", function () {",
+							"    pm.expect(jsonResponse.userEquations.length).to.eql(0);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "2d397231-85cb-4c4a-9dc6-1f87e5ce090f",
+						"exec": [
+							"pm.globals.set('userId', _.random(1, 1000));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"equation\": \"5x5\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/calculate/{{userId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"calculate",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Correct Multiplication Equation Format [ X  operator]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "554b22e2-541a-4392-ad14-83c65a01feb7",
+						"exec": [
+							"const jsonResponse = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Check result number is correct with correct equation format  \", function () {",
+							"    pm.expect(jsonResponse.equationResult.resultNumber).to.eql(25);",
+							"});",
+							"",
+							"pm.test(\"Check result number is natural number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.naturalNumber).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Check result number is positive number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.positiveNumber).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Check result number is not negative number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.negativeNumber).to.eql(false);",
+							"});",
+							"",
+							"pm.test(\"Check result number is prime number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.primeNumber).to.eql(false);",
+							"});",
+							"",
+							"pm.test(\"Check result number is whole number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.wholeNumber).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Check history is empty with first equation\", function () {",
+							"    pm.expect(jsonResponse.userEquations.length).to.eql(0);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "dce56c9a-2f28-4dc0-b200-3c51b1cad8fa",
+						"exec": [
+							"pm.globals.set('userId', _.random(1, 1000));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"equation\": \"5X5\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/calculate/{{userId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"calculate",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Correct Equation Format With Leading Zeros",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "554b22e2-541a-4392-ad14-83c65a01feb7",
+						"exec": [
+							"const jsonResponse = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Check result number is correct with correct equation format  \", function () {",
+							"    pm.expect(jsonResponse.equationResult.resultNumber).to.eql(10);",
+							"});",
+							"",
+							"pm.test(\"Check result number is natural number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.naturalNumber).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Check result number is positive number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.positiveNumber).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Check result number is not negative number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.negativeNumber).to.eql(false);",
+							"});",
+							"",
+							"pm.test(\"Check result number is prime number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.primeNumber).to.eql(false);",
+							"});",
+							"",
+							"pm.test(\"Check result number is whole number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.wholeNumber).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Check history is empty with first equation\", function () {",
+							"    pm.expect(jsonResponse.userEquations.length).to.eql(0);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0431d14b-00c1-4773-aa58-e58a767a8304",
+						"exec": [
+							"pm.globals.set('userId', _.random(1, 1000));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"equation\": \"005+005\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/calculate/{{userId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"calculate",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Correct Equation Format With White Spaces",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "554b22e2-541a-4392-ad14-83c65a01feb7",
+						"exec": [
+							"const jsonResponse = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Check result number is correct with correct equation format  \", function () {",
+							"    pm.expect(jsonResponse.equationResult.resultNumber).to.eql(10);",
+							"});",
+							"",
+							"pm.test(\"Check result number is natural number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.naturalNumber).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Check result number is positive number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.positiveNumber).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Check result number is not negative number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.negativeNumber).to.eql(false);",
+							"});",
+							"",
+							"pm.test(\"Check result number is prime number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.primeNumber).to.eql(false);",
+							"});",
+							"",
+							"pm.test(\"Check result number is whole number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.wholeNumber).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Check history is empty with first equation\", function () {",
+							"    pm.expect(jsonResponse.userEquations.length).to.eql(0);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d5289eba-e4a6-443f-a1e2-761672f7ebb6",
+						"exec": [
+							"pm.globals.set('userId', _.random(1, 1000));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"equation\": \"  5+  5\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/calculate/{{userId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"calculate",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Invalid Equation Format With Invalid Operators",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "554b22e2-541a-4392-ad14-83c65a01feb7",
+						"exec": [
+							"const jsonResponse = JSON.parse(responseBody)",
+							"",
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"Check bad request error message\", function () {",
+							"    pm.expect(jsonResponse.message).to.eql('Incorrect equation format');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ea2cd95f-7f23-4ddb-a141-4c78e81dfe5d",
+						"exec": [
+							"pm.globals.set('userId', _.random(1, 1000));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"equation\": \"5#5\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/calculate/{{userId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"calculate",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Invalid Equation Format With Multiple Operators",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "554b22e2-541a-4392-ad14-83c65a01feb7",
+						"exec": [
+							"const jsonResponse = JSON.parse(responseBody)",
+							"",
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"Check bad request error message\", function () {",
+							"    pm.expect(jsonResponse.message).to.eql('Incorrect equation format');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7ff5c63c-3fdd-4718-8dad-7386066a6f49",
+						"exec": [
+							"pm.globals.set('userId', _.random(1, 1000));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"equation\": \"1/+1\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/calculate/{{userId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"calculate",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Invalid Equation Format With Negative Zero",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "554b22e2-541a-4392-ad14-83c65a01feb7",
+						"exec": [
+							"const jsonResponse = JSON.parse(responseBody)",
+							"",
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"Check bad request error message\", function () {",
+							"    pm.expect(jsonResponse.message).to.eql('Incorrect equation format');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1e752af5-6ea8-4b09-a4b4-3845fcc4fc3a",
+						"exec": [
+							"pm.globals.set('userId', _.random(1, 1000));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"equation\": \"-0+5\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/calculate/{{userId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"calculate",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Division Of Number On Zero",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "554b22e2-541a-4392-ad14-83c65a01feb7",
+						"exec": [
+							"const jsonResponse = JSON.parse(responseBody)",
+							"",
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"Check bad request error message\", function () {",
+							"    pm.expect(jsonResponse.message).to.eql('Incorrect equation format');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "cf400235-3083-4d53-b98c-6fb855751f78",
+						"exec": [
+							"pm.globals.set('userId', _.random(1, 1000));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"equation\": \"5/0\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/calculate/{{userId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"calculate",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Division Of Zero On Zero",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "554b22e2-541a-4392-ad14-83c65a01feb7",
+						"exec": [
+							"const jsonResponse = JSON.parse(responseBody)",
+							"",
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"Check bad request error message\", function () {",
+							"    pm.expect(jsonResponse.message).to.eql('Incorrect equation format');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d0608817-710a-4879-9411-00ae69e7b3b2",
+						"exec": [
+							"pm.globals.set('userId', _.random(1, 1000));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"equation\": \"0/0\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/calculate/{{userId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"calculate",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test user history list is updated after second request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "554b22e2-541a-4392-ad14-83c65a01feb7",
+						"exec": [
+							"const jsonResponse = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Check result number is correct with correct equation format  \", function () {",
+							"    pm.expect(jsonResponse.equationResult.resultNumber).to.eql(3);",
+							"});",
+							"",
+							"pm.test(\"Check result number is natural number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.naturalNumber).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Check result number is positive number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.positiveNumber).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Check result number is not negative number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.negativeNumber).to.eql(false);",
+							"});",
+							"",
+							"pm.test(\"Check result number is prime number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.primeNumber).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Check result number is whole number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.wholeNumber).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Check history is empty with first equation\", function () {",
+							"    pm.expect(jsonResponse.userEquations.length).to.eql(1);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "660158d2-d56e-4866-8ca0-4997b228835e",
+						"exec": [
+							"pm.globals.set('userId', _.random(1, 1000));",
+							"var userId = pm.globals.get(\"userId\");",
+							"",
+							"pm.sendRequest({",
+							"    url: \"http://localhost:8080/calculate/\"+userId,",
+							"    method: 'POST',",
+							"    header: {",
+							"        'content-type': 'application/json'",
+							"    },",
+							"    body: {",
+							"        mode: 'raw',",
+							"        raw: JSON.stringify({ equation: \"1+2\" })",
+							"    }",
+							"}, function (err, res) {",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"equation\": \"1+2\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/calculate/{{userId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"calculate",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test user equation history only can have 5 equations",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "554b22e2-541a-4392-ad14-83c65a01feb7",
+						"exec": [
+							"const jsonResponse = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Check result number is correct with correct equation format  \", function () {",
+							"    pm.expect(jsonResponse.equationResult.resultNumber).to.eql(3);",
+							"});",
+							"",
+							"pm.test(\"Check result number is natural number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.naturalNumber).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Check result number is positive number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.positiveNumber).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Check result number is not negative number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.negativeNumber).to.eql(false);",
+							"});",
+							"",
+							"pm.test(\"Check result number is prime number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.primeNumber).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Check result number is whole number \", function () {",
+							"    pm.expect(jsonResponse.equationResult.numberClassifier.wholeNumber).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Check history is empty with first equation\", function () {",
+							"    pm.expect(jsonResponse.userEquations.length).to.eql(5);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "97a12823-4003-4482-b76f-16dd21a20b9c",
+						"exec": [
+							"pm.globals.set('userId', _.random(1, 1000));",
+							"var userId = pm.globals.get(\"userId\");",
+							"",
+							"for(let i = 0; i<5; i++) {",
+							"    pm.sendRequest({",
+							"    url: \"http://localhost:8080/calculate/\"+ userId,",
+							"    method: 'POST',",
+							"    header: {",
+							"        'content-type': 'application/json'",
+							"    },",
+							"    body: {",
+							"        mode: 'raw',",
+							"        raw: JSON.stringify({ equation: \"1+2\" })",
+							"    }",
+							"}, function (err, res) {",
+							"});",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"equation\": \"1+2\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/calculate/{{userId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"calculate",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
